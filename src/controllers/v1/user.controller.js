@@ -1,16 +1,15 @@
-const get = (req, res, next) => {
+import {models} from '../../models'
 
-    console.log(req.query)
-    
-    try {
+const get = async (req, res, next) => {
+  try {
+    const users = await models.User.findAll()
 
-        return res.json({message: 'users get'});
-        
-    } catch (e) {
-        next(e)
-    }
+    return res.json(users)
+  } catch (e) {
+    next(e)
   }
-  
-  export {
-    get
-  }
+}
+
+export {
+  get
+}
